@@ -1,3 +1,16 @@
+# 5 Lifecycle Models
+
+## Table of Contents
+- [5.1 Card Lifecycle](#51-card-life-cycle)
+  - [5.1.1 Card Lifecycle States](#511-card-life-cycle-states)
+  - [5.1.2 Card Lifecycle Transitions](#512-card-life-cycle-state-transitions)
+- [5.2 Executable Load File / Module Lifecycle](#52-executable-load-file--executable-module-life-cycle)
+- [5.3 Application and Security Domain Lifecycle](#53-application-and-security-domain-life-cycle)
+  - [5.3.1 Application Lifecycle States](#531-application-life-cycle-states)
+  - [5.3.2 Security Domain Lifecycle States](#532-security-domain-life-cycle-states)
+- [5.4 Sample Lifecycle Illustration](#54-sample-life-cycle-illustration)
+
+
 # 5 Life Cycle Models
 
 ---
@@ -178,3 +191,4 @@ stateDiagram-v2
 <!-- presenter note:
 Use this combined view to summarize lifecycle dependencies — Issuer controls card, SD controls app, both secured by SCP.
 -->
+
