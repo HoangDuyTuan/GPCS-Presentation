@@ -1,5 +1,18 @@
 # Appendix A — APDU Flow Examples
 
+## Table of Contents
+- [A.1 SCP03 Secure Channel Establishment](#a1-scp03-secure-channel-establishment)
+  - [A.1.1 Initialization Flow](#a11-initialization-flow)
+- [A.2 Application Loading and Installation](#a2-application-loading-and-installation)
+  - [A.2.1 Application Load Flow](#a21-application-load-flow)
+  - [A.2.2 Lifecycle Synchronization](#a22-life-cycle-synchronization)
+- [A.3 Application Deletion and Termination](#a3-application-deletion-and-termination)
+  - [A.3.1 Application Deletion Example](#a31-application-deletion-example)
+  - [A.3.2 Card Termination Example](#a32-card-termination-example)
+
+
+# Appendix A — APDU Flow Examples
+
 ---
 
 ## A.1 SCP03 Secure Channel Establishment
