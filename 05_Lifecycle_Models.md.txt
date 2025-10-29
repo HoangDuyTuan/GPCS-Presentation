@@ -1,0 +1,51 @@
+```markdown
+# 5 Life Cycle Models
+
+## 5.1 Card Life Cycle
+
+### 5.1.1 Card Life Cycle States
+<!-- Table 5-1: Card Life Cycle States -->
+<!-- Figure 5-1: Card Life Cycle Diagram -->
+```mermaid
+stateDiagram-v2
+  [*] --> OP_READY
+  OP_READY --> INITIALIZED : personalize
+  INITIALIZED --> SECURED : install keys
+  SECURED --> LOCKED : lock
+  LOCKED --> TERMINATED : terminate
+5.1.2 Card Life Cycle State Transitions
+Transitions require authenticated commands and privilege verification.
+
+5.2 Executable Load File / Executable Module Life Cycle
+<!-- Figure 5-2: Executable Module Lifecycle -->
+mermaid
+Copy code
+stateDiagram-v2
+  [*] --> LOADED
+  LOADED --> INSTALLED : install-module
+  INSTALLED --> DELETED : delete
+5.3 Application and Security Domain Life Cycle
+5.3.1 Application Life Cycle States
+mermaid
+Copy code
+stateDiagram-v2
+  [*] --> INSTALLED
+  INSTALLED --> SELECTABLE : make-selectable
+  SELECTABLE --> LOCKED : lock
+  LOCKED --> DELETED : delete
+5.3.2 Security Domain Life Cycle States
+mermaid
+Copy code
+stateDiagram-v2
+  [*] --> PERSONALIZED
+  PERSONALIZED --> INITIALIZED : init-keys
+  INITIALIZED --> LOCKED : lock
+  LOCKED --> TERMINATED : terminate
+5.4 Sample Life Cycle Illustration
+Demonstrates combined card, application, and SD lifecycle alignment.
+
+<!-- presenter note: Emphasize dependencies between lifecycles for issuance and termination. -->
+yaml
+Copy code
+
+---

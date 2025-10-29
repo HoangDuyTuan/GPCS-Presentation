@@ -1,0 +1,35 @@
+# 2 System Architecture
+
+## 2.1 Overview
+Defines separation between off-card management, communication, and on-card environments.
+
+<!-- Figure 2-1: GlobalPlatform System Overview -->
+```mermaid
+graph LR
+  CMS[Card Management System] -->|Card Mgmt| Card((GlobalPlatform Card))
+  AMS[Application Management System] -->|App Mgmt| Card
+  CA[Controlling Authority] -->|Policy Tokens| Card
+  Card -->|APDU| Terminal[Terminal/Reader]
+<!-- presenter note: Explain off-card/on-card boundaries and trusted actor communication. -->
+2.2 Roles
+Role	Responsibility
+Card Issuer	Personalizes and maintains card security
+Application Provider	Supplies and manages applets
+Controlling Authority	Defines and enforces security policy
+Cardholder	Uses the card securely
+
+<!-- Table 2-1: Roles and Responsibilities -->
+2.3 Communication and Secure Channel
+All management and application exchanges occur through ISO/IEC 7816-4 APDUs, optionally protected by Secure Channel Protocols.
+
+<!-- Figure 2-2: SCP03 Authentication Flow -->
+mermaid
+Copy code
+sequenceDiagram
+  participant Terminal
+  participant Card
+  Terminal->>Card: INITIALIZE UPDATE
+  Card-->>Terminal: Card Challenge, Sequence Counter
+  Terminal->>Card: EXTERNAL AUTHENTICATE
+  Card-->>Terminal: 90 00 (Secure Channel Open)
+<!-- presenter note: Walk through APDU exchange, emphasizing C-APDU and R-APDU structure. -->

@@ -1,0 +1,66 @@
+```markdown
+# 6 GlobalPlatform Environment (OPEN)
+
+## 6.1 Overview
+OPEN manages app selection, APDU dispatch, and privilege control.
+
+## 6.2 OPEN Services
+Provides channel management, registry access, and secure messaging.
+
+## 6.3 Command Dispatch
+<!-- Figure 6-1: OPEN Command Routing -->
+```mermaid
+graph LR
+  Terminal -->|APDU| OPEN[OPEN Dispatcher]
+  OPEN --> SD[Security Domain]
+  OPEN --> App[Application]
+6.4 Logical Channels and Application Selection
+6.4.1 Implicit Selection Assignment
+Basic Channel 0 automatically selects Card Manager.
+
+6.4.2 Basic Logical Channel
+mermaid
+Copy code
+graph LR
+  CH0[Channel 0] --> CM[Card Manager]
+6.4.3 Supplementary Logical Channel
+mermaid
+Copy code
+graph LR
+  CH0[Channel 0] --> CM[Card Manager]
+  CH1[Channel 1] --> App1[App A]
+  CH2[Channel 2] --> App2[App B]
+6.5 GlobalPlatform Registry
+<!-- Figure 6-2: Registry Relationships -->
+mermaid
+Copy code
+graph TD
+  Registry[Root] --> LoadFile[Load File Entries]
+  Registry --> App[Application Entries]
+  Registry --> SD[Security Domain Entries]
+<!-- Table 6-1: Registry Data Elements -->
+6.6 Privileges
+6.6.1 Definition
+Defines allowed operations (LOAD, DELETE, DAP_VERIFY).
+
+6.6.2 Assignment
+Granted during installation or personalization.
+
+6.6.3 Management
+OPEN checks privileges before command execution.
+
+<!-- Figure 6-3: Privilege Enforcement -->
+mermaid
+Copy code
+graph LR
+  Reg[Privilege Table] --> SD[Security Domain]
+  SD --> App[Application]
+  App --> Action[Operation]
+6.7 GlobalPlatform Trusted Framework
+Defines APIs, certification, and interoperability.
+
+<!-- presenter note: Link trust to application portability. -->
+yaml
+Copy code
+
+---
