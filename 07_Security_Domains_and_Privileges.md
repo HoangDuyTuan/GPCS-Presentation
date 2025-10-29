@@ -1,78 +1,106 @@
-# 7 Security Domains and Privileges
+# 7 Security Domains
 
 ## Table of Contents
-- [7.1 Overview](#71-overview)
-- [7.2 Security Domain Structure](#72-security-domain-structure)
-- [7.3 Privilege Definition](#73-privilege-definition)
-- [7.4 Privilege Assignment and Enforcement](#74-privilege-assignment-and-enforcement)
-- [7.5 Summary](#75-summary)
+- [7.1 General Description](#71-general-description)
+  - [7.1.1 Issuer Security Domain](#711-issuer-security-domain)
+- [7.2 Security Domain Association](#72-security-domain-association)
+- [7.3 Security Domain Services](#73-security-domain-services)
+  - [7.3.1 Security Domain Support for Secure Messaging](#731-security-domain-support-for-secure-messaging)
+  - [7.3.2 Security Domain Support for Application Personalization](#732-security-domain-support-for-application-personalization)
+- [7.4 Security Domain Data](#74-security-domain-data)
+  - [7.4.1 Issuer Security Domain](#741-issuer-security-domain)
+  - [7.4.2 Supplementary Security Domains](#742-supplementary-security-domains)
+- [7.5 Security Domain Keys](#75-security-domain-keys)
+  - [7.5.1 Key Information](#751-key-information)
+  - [7.5.2 Key Access Conditions](#752-key-access-conditions)
+- [7.6 Data and Key Management](#76-data-and-key-management)
 
 ---
 
-### 7.1 Overview
-A **Security Domain (SD)** is a logical container that holds cryptographic keys, privileges, and management authority for one or more applications.
+### 7.1 General Description
+A **Security Domain (SD)** is an on-card entity that manages applications and enforces security rules through cryptographic keys and privileges.
 
 Each SD can:
-- Host applications
-- Manage its own keys and secure channels
-- Verify digital signatures (DAPs)
-- Install or delete content, if authorized
-
-<!-- presenter note:
-Reinforce that the SD is both a security perimeter and an administrative authority.
--->
-
----
-
-### 7.2 Security Domain Structure
-Each SD contains:
-- **Key Set(s)** (for SCP sessions)
-- **Privileges** (granted at creation)
-- **Associated Applications**
-- **Lifecycle State**
+- Host and manage applications  
+- Establish secure channels  
+- Perform delegated content management  
+- Provide cryptographic services  
 
 ```mermaid
 graph TD
-  SD[Security Domain] --> Keys[Key Set]
-  SD --> Privs[Privilege Table]
-  SD --> Apps[Associated Applications]
-  SD --> State[Lifecycle State]
+  ISD[Issuer Security Domain] --> SSD1[Supplementary SD 1]
+  ISD --> SSD2[Supplementary SD 2]
+  SSD1 --> Apps[Applications]
 ```
 
 ---
 
-### 7.3 Privilege Definition
-Privileges control what an SD can do.
+#### 7.1.1 Issuer Security Domain
+The **Issuer Security Domain (ISD)** is the master SD responsible for:
+- Card initialization and key provisioning  
+- Card lifecycle control  
+- Secure channel root key derivation  
 
-| Privilege | Description |
-|------------|-------------|
-| Security Domain Management | Create or delete other SDs |
-| DAP Verification | Verify application signatures |
-| Delegated Management | Manage content on behalf of the Issuer |
-| Global Delete | Delete objects across the card |
-| Global Lock/Unlock | Control lifecycle state |
+It always exists and cannot be deleted.
 
 ---
 
-### 7.4 Privilege Assignment and Enforcement
-Privileges are assigned by:
-1. The **Issuer** (during INSTALL [for load])
-2. A **Controlling Authority** (via token)
-3. The **OPEN Environment**, which enforces them
+### 7.2 Security Domain Association
+Security Domains may be **hierarchically associated** — the ISD can create or delete supplementary SDs.
+
+Each SD’s **association** is stored in the GlobalPlatform Registry.
+
+---
+
+### 7.3 Security Domain Services
+Security Domains expose a defined set of services to applications or other SDs.
+
+#### 7.3.1 Security Domain Support for Secure Messaging
+Each SD maintains its own secure channel parameters and keys.  
+Secure messaging is managed through SCP sessions.
 
 ```mermaid
-graph LR
-  Token[Privilege Token] --> SD
-  SD --> OPEN[OPEN Enforcement]
-  OPEN --> Actions[Command Execution]
+sequenceDiagram
+  participant Terminal
+  participant SD
+  Terminal->>SD: INITIALIZE UPDATE
+  SD-->>Terminal: Cryptogram + Counter
+  Terminal->>SD: EXTERNAL AUTHENTICATE
 ```
 
-<!-- presenter note:
-Explain how privilege enforcement occurs before every command execution.
--->
+#### 7.3.2 Security Domain Support for Application Personalization
+An SD can allow personalization data to be sent securely to its applications via the `STORE DATA` command, under secure channel protection.
 
 ---
 
-### 7.5 Summary
-Security Domains are trust boundaries.  
-They allow multiple entities to share one secure element while maintaining isolation and delegated control.
+### 7.4 Security Domain Data
+
+#### 7.4.1 Issuer Security Domain
+The ISD stores:
+- Card-wide data elements  
+- Lifecycle state  
+- Registry references  
+
+#### 7.4.2 Supplementary Security Domains
+Supplementary SDs store:
+- Privilege table  
+- Associated app AIDs  
+- Local keys for secure sessions  
+
+---
+
+### 7.5 Security Domain Keys
+
+#### 7.5.1 Key Information
+Keys include:
+- **Key-ENC / Key-MAC / Key-DEK** for SCP  
+- **Key Version Numbers (KVN)** for rotation tracking  
+
+#### 7.5.2 Key Access Conditions
+Keys can be read or updated only by authorized entities (e.g., ISD or Controlling Authority) under secure messaging.
+
+---
+
+### 7.6 Data and Key Management
+Security Domains handle key rotation, derivation, and update through SCP mechanisms.  
+Issuers may derive diversified keys per card or per SD.
