@@ -1,5 +1,15 @@
 # 2 System Architecture
 
+## Table of Contents
+- [2.1 Overview](#21-overview)
+- [2.2 Roles](#22-roles)
+- [2.3 Communication and Secure Channel](#23-communication-and-secure-channel)
+- [2.4 Secure Communication Layers](#24-secure-communication-layers)
+- [2.5 Summary](#25-summary)
+
+
+# 2 System Architecture
+
 ---
 
 ## 2.1 Overview
@@ -113,3 +123,4 @@ GlobalPlatform uses a layered communication stack built upon ISO/IEC 7816 standa
 <!-- presenter note:
 Reinforce the message: “Every GlobalPlatform command is just an APDU — but securely wrapped and role-governed.”
 -->
+
