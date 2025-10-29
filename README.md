@@ -1,29 +1,26 @@
-# GlobalPlatform Card Specification — Parts II & III  
-### Engineering Presentation Markdown Package (v2.3.1)
+# GPCS-Presentation  
+## GlobalPlatform Card Specification (v2.3.1) — Engineering Presentation Package
 
 ---
 
-## 📘 Purpose
+### 📘 Overview  
+This repository provides **engineering-level presentation materials** for the  
+**GlobalPlatform Card Specification v2.3.1**, covering **Chapters 2–6** and **Appendix A**.  
 
-This package contains Markdown-based presentation material derived from the  
-**GlobalPlatform Card Specification v2.3.1 (Public Release)** — specifically  
-**Chapters 2–6 and Appendix A**.
-
-It is intended for **technical audiences** (engineers, developers, architects)  
-to support internal presentations, training sessions, or wiki documentation.
+It is designed for **engineers, developers, and architects** to use in internal trainings,  
+wiki documentation, or conference-style presentations.  
 
 Each file includes:
-- Full section numbering matching the official specification  
-- Inline **Mermaid diagrams** for architecture and flow visualization  
-- **Presenter notes** embedded as HTML comments  
-- **Figure** and **Table placeholders** for later replacement with official diagrams  
+- Accurate section numbering matching the GlobalPlatform spec  
+- Embedded **Mermaid diagrams** (for APDU flow, architecture, lifecycles)  
+- **Presenter notes** in HTML comments  
+- Tables and figure placeholders for expansion  
 
 ---
 
-## 📂 File Structure
-
-```
-GlobalPlatform_CardSpec_PartII-III_Markdown_Presentation/
+### 📂 Repository Structure
+```text
+GPCS-Presentation/
 │
 ├── 00_Session_Overview.md
 ├── 02_System_Architecture.md
@@ -37,100 +34,87 @@ GlobalPlatform_CardSpec_PartII-III_Markdown_Presentation/
 
 ---
 
-## 🧩 Contents Overview
+### 🧩 File Descriptions
 
-| File | Description |
-|------|--------------|
-| `00_Session_Overview.md` | Session objectives, schedule, and outcomes |
-| `02_System_Architecture.md` | System roles, secure channel architecture |
-| `03_Card_Architecture.md` | Security Domains, OPEN, and card content |
-| `04_Security_Architecture.md` | Security roles, SCP protocols, and cryptographic model |
-| `05_Lifecycle_Models.md` | Card, App, and SD lifecycles |
-| `06_GlobalPlatform_Environment.md` | OPEN dispatch, logical channels, privileges |
-| `Appendix_A_APDU_Flow_Examples.md` | SCP03 and LOAD/INSTALL APDU sequences |
+| File | Contents | Purpose |
+|------|-----------|----------|
+| `00_Session_Overview.md` | Presentation objectives, schedule, outcomes | Kickoff for session |
+| `02_System_Architecture.md` | System roles, secure channel, communication flow | Big-picture architecture |
+| `03_Card_Architecture.md` | Security Domains, OPEN, card content hierarchy | On-card logical design |
+| `04_Security_Architecture.md` | Security responsibilities, SCP03 key derivation | Cryptographic foundation |
+| `05_Lifecycle_Models.md` | Card, SD, and application lifecycles | State and transition behavior |
+| `06_GlobalPlatform_Environment.md` | OPEN dispatch, logical channels, registry | Runtime environment control |
+| `Appendix_A_APDU_Flow_Examples.md` | SCP03 and LOAD/INSTALL APDU flow examples | Wire-level demonstration |
 
 ---
 
-## 🧠 Presenter Usage
+### 🛠️ Usage Instructions
 
-Each chapter includes embedded HTML comments like:
+1. **Clone or download** the repository:
+   ```bash
+   git clone https://github.com/HoangDuyTuan/GPCS-Presentation.git
+   ```
+2. Open `.md` files in your internal wiki, GitHub viewer, or Markdown editor.  
+3. **Mermaid diagrams** render automatically on GitHub, GitLab, and VS Code.  
+4. Replace placeholders like `<!-- Figure 2-1: ... -->` with actual diagrams if available.  
+5. Use embedded `<!-- presenter note: ... -->` comments as speech prompts.
 
-```html
-<!-- presenter note: Highlight secure channel initialization sequence -->
+---
+
+### 🎨 Mermaid Rendering Notes
+
+GitHub supports Mermaid natively.  
+If you’re using another platform (Confluence, MkDocs, Marp), ensure Mermaid rendering is enabled.
+
+✅ **Safe syntax example:**
+graph LR
+  A["Card Manager (ISD)"] --> B["Security Domain (SD)"]
+  B --> C["Application Instance (AID)"]
+
+⚠️ **Avoid parser errors:**  
+If your node labels include parentheses or commas, wrap them in quotes:
+```mermaid
+graph LR
+  NodeA["ISD Master Key (K-ENC, K-MAC, K-DEK)"] --> NodeB["Session Keys (S-ENC, S-MAC, DEK)"]
 ```
 
-These can be viewed in raw Markdown or ignored in rendered views.  
-They provide key talking points for live presentations.
+---
+
+### 🧠 Presenter Tips (30–60 min session)
+
+- Start with the big picture — *GlobalPlatform = secure lifecycle governance for smart cards*.  
+- Use the **Mermaid diagrams** in Chapters 2–6 to visually explain flows and roles.  
+- Refer to the embedded comments as your speaker notes.  
+- The session is designed for 45 minutes:
+  - 5 min – Introduction  
+  - 10 min – System & Card Architecture  
+  - 10 min – Security Architecture  
+  - 10 min – Lifecycle Models  
+  - 8 min – OPEN Environment  
+  - 5 min – Appendix (APDU examples)  
+  - 2 min – Recap & Q&A  
+
+💬 Key takeaway quote:
+> “Every GlobalPlatform command is just an APDU — but securely wrapped, role-governed, and lifecycle-controlled.”
 
 ---
 
-## 🧩 Mermaid Diagram Rendering
+### 📄 License & Attribution
 
-### On **GitHub / GitLab Wiki**
-- Mermaid syntax is natively supported inside code fences:
-graph TD
-A --> B
-- Ensure parentheses are escaped (`\(` and `\)`) in node labels for GitHub compatibility.
-
-### On **Confluence**
-- Use the *Mermaid for Confluence* plugin or macro.
-
-### On **MkDocs / Docusaurus**
-Add these extensions in your `mkdocs.yml`:
-```yaml
-markdown_extensions:
-- pymdownx.superfences
-- pymdownx.tabbed
-- pymdownx.details
-- pymdownx.highlight
-- pymdownx.keys
-- pymdownx.emoji
-- pymdownx.arithmatex
-- pymdownx.tasklist
-- pymdownx.inlinehilite
-- pymdownx.mark
-- pymdownx.superfences:
-    custom_fences:
-      - name: mermaid
-        class: mermaid
-        format: !!python/name:pymdownx.superfences.fence_code_format
-```
-
-### On **Marp / Slides**
-Use Marp’s Mermaid plugin or export diagrams to SVG.
-
----
-
-## 🛠️ Editing Notes
-
-- Keep all diagram code blocks fenced in triple backticks (` ```mermaid `).  
-- Replace `<!-- Figure X-Y -->` and `<!-- Table X-Y -->` placeholders with official GlobalPlatform figures if available.  
-- All diagrams have been checked for GitHub-safe syntax (escaped parentheses).  
-- You can merge these `.md` files into your company wiki directly.
-
----
-
-## 📄 License and Attribution
-
-This package reinterprets content from the  
+This material reinterprets concepts from the  
 **GlobalPlatform Card Specification v2.3.1 (Public Release)**  
-for educational and internal engineering purposes.
+for **educational and internal training use**.  
 
-All GlobalPlatform trademarks and materials remain property of  
-**GlobalPlatform, Inc.**
-
----
-
-## ✅ Recommended Use Flow
-
-1. Upload `.md` files to your internal wiki (GitHub Wiki, Confluence, or GitLab).  
-2. Verify Mermaid diagrams render correctly.  
-3. Use presenter notes as talking prompts during training.  
-4. Optionally replace diagrams with high-fidelity images from the official PDF.
+All trademarks and proprietary content remain the property of **GlobalPlatform, Inc.**
 
 ---
 
-<!-- presenter note:
-Introduce this README as a quick reference for other engineers who use or maintain the presentation material.
-Encourage consistency with the official GP specification and internal security guidelines.
--->
+### 🤝 Contributing
+Feel free to:
+- Submit pull requests for corrections or diagram improvements  
+- Add translated versions for multilingual engineering teams  
+- Extend with future chapters (e.g., Secure Channel Protocols Appendix)
+
+---
+
+*Maintained by Hoang Duy Tuan • GlobalPlatform Engineering Presentation Repository*
