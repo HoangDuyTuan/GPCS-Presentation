@@ -1,73 +1,53 @@
-# 8 Secure Channel Protocols
+# 8 GlobalPlatform Services
 
 ## Table of Contents
-- [8.1 Overview](#81-overview)
-- [8.2 SCP01 and SCP02](#82-scp01-and-scp02)
-- [8.3 SCP03 (AES-based)](#83-scp03-aes-based)
-- [8.4 SCP11 (Public-Key)](#84-scp11-public-key)
-- [8.5 Security Comparison](#85-security-comparison)
-- [8.6 Summary](#86-summary)
+- [8.1 Global Services Applications](#81-global-services-applications)
+  - [8.1.1 Registering Global Services](#811-registering-global-services)
+  - [8.1.2 Application Access to Global Services](#812-application-access-to-global-services)
+  - [8.1.3 Global Service Parameters](#813-global-service-parameters)
+- [8.2 CVM Application](#82-cvm-application)
+  - [8.2.1 Application Access to CVM Services](#821-application-access-to-cvm-services)
+  - [8.2.2 CVM Management](#822-cvm-management)
 
 ---
 
-### 8.1 Overview
-Secure Channel Protocols (SCPs) protect all management commands exchanged between off-card entities and the card.
+### 8.1 Global Services Applications
+**Global Services** are shared applications accessible by other on-card applications via standardized APIs.
 
-They ensure:
-- Mutual authentication  
-- Integrity and confidentiality  
-- Replay protection  
+Typical examples:
+- Cardholder verification (CVM)
+- Secure data storage
+- Shared cryptographic functions
 
 ---
 
-### 8.2 SCP01 and SCP02
-Older SCPs based on 3DES:
-- **SCP01**: Basic session derivation  
-- **SCP02**: Adds C-MAC and C-ENC for command protection  
+#### 8.1.1 Registering Global Services
+A Global Service registers with the **OPEN environment**, which stores its service AID and parameters in the Registry.
 
 ```mermaid
-sequenceDiagram
-  participant Host
-  participant Card
-  Host->>Card: INITIALIZE UPDATE (3DES)
-  Card-->>Host: Response (Sequence + Cryptogram)
-  Host->>Card: EXTERNAL AUTHENTICATE
+graph TD
+  App --> OPEN
+  OPEN --> Registry
+  Registry --> Service[Global Service Record]
 ```
 
----
+#### 8.1.2 Application Access to Global Services
+Applications discover and bind to services using their AID.  
+Access is governed by privileges and service configuration.
 
-### 8.3 SCP03 (AES-based)
-Modern protocol using AES keys for:
-- S-ENC (encryption)
-- S-MAC (integrity)
-- DEK (key wrapping)
-
-```mermaid
-graph LR
-  BaseKeys["Issuer Master Keys (K-ENC, K-MAC, K-DEK)"] -->|Derive| Session["S-ENC, S-MAC, DEK"]
-  Session -->|Secure| Commands["Encrypted + MACed APDUs"]
-```
+#### 8.1.3 Global Service Parameters
+Parameters define:
+- Access control list (ACL)
+- Communication mode (internal or external)
+- API entry points
 
 ---
 
-### 8.4 SCP11 (Public-Key)
-Public-key-based SCP for high-assurance use cases.
-- Mutual authentication via EC Diffie-Hellman  
-- Protects against cloning and replay  
-- Often used in eUICC and embedded environments
+### 8.2 CVM Application
+The **Cardholder Verification Method (CVM)** Application provides identity verification services such as PIN, biometric, or token validation.
 
----
+#### 8.2.1 Application Access to CVM Services
+Applications call CVM functions using the GlobalPlatform API, verifying user presence before critical operations.
 
-### 8.5 Security Comparison
-
-| SCP | Key Type | Crypto | Typical Use |
-|------|-----------|---------|--------------|
-| SCP01 | Symmetric | 3DES | Legacy cards |
-| SCP02 | Symmetric | 3DES | Payment cards |
-| SCP03 | Symmetric | AES | Modern SEs, SIM/eSIM |
-| SCP11 | Asymmetric | ECC | High security / remote provisioning |
-
----
-
-### 8.6 Summary
-SCP03 is the current standard for symmetric secure channels, while SCP11 enables asymmetric mutual authentication for next-generation platforms.
+#### 8.2.2 CVM Management
+CVM parameters (PIN length, retry counter, blocking policy) are maintained by the Issuer and accessible only through the CVM management interface.
