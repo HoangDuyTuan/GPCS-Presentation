@@ -1,6 +1,8 @@
 # GlobalPlatform Card Specification (v2.3.1)
 ## Engineering Presentation — Parts II–III
 
+---
+
 ### 🎯 Objective
 Provide engineers and architects with a clear, technically accurate overview of:
 - GlobalPlatform card structure and actor roles  
@@ -22,18 +24,32 @@ Provide engineers and architects with a clear, technically accurate overview of:
 
 ---
 
+### 📘 Supporting Material
+Each chapter file (`02_`–`06_`) includes:
+- **Mermaid diagrams** for architecture and flows  
+- **Presenter notes** in HTML comments  
+- Accurate structure following the official GlobalPlatform specification  
+
+---
+
 ### 🛠️ Technical Focus
-- Secure Channel Protocols (SCP02, SCP03, SCP11)
-- Security Domain delegation and privilege management
-- Application and card lifecycle control
-- OPEN dispatch, registry, and privilege enforcement
+- Secure Channel Protocols (SCP02, SCP03, SCP11)  
+- Security Domain delegation and privilege management  
+- Application and card lifecycle control  
+- OPEN command dispatch and registry enforcement  
 
 ---
 
 ### ✅ Outcomes
 By the end of this session, participants should:
-- Understand GlobalPlatform card operation
-- Be able to read and implement APDU-level flows
-- Recognize relationships between issuer, SD, and app lifecycles
+- Understand GlobalPlatform card operation  
+- Be able to trace and implement APDU-level flows  
+- Recognize relationships between issuer, SD, and app lifecycles  
 
-<!-- presenter note: Introduce GP as a standard for secure multi-application cards. -->
+---
+
+<!-- presenter note:
+Start with a brief context — GlobalPlatform standardizes card content management and security.
+Emphasize interoperability, multiple stakeholder control, and secure card management.
+This introduction sets the tone for detailed architecture discussions in subsequent chapters.
+-->
