@@ -72,8 +72,8 @@ Session keys are derived from the ISD’s master keys.
 <!-- Figure 4-1: Key Derivation Hierarchy -->
 ```mermaid
 graph LR
-  BaseKey[ISD Master Key \(K-ENC, K-MAC, K-DEK\)] -->|Derive| SessionKeys[SCP03 Session Keys \(S-ENC, S-MAC, DEK\)]
-  SessionKeys -->|Used For| SecureMsg[Secure Messaging MAC + ENC]
+  BaseKey["ISD Master Key (K-ENC, K-MAC, K-DEK)"] -->|Derive| SessionKeys["SCP03 Session Keys (S-ENC, S-MAC, DEK)"]
+  SessionKeys -->|Used For| SecureMsg["Secure Messaging MAC + ENC"]
 ```
 
 **Typical Key Derivation (SCP03):**
@@ -84,6 +84,7 @@ graph LR
 <!-- Table 4-2: Session Key Derivation Parameters -->
 
 **Note:** Key diversification may use card-specific data (e.g., Card Unique ID).
+
 
 ---
 
@@ -132,3 +133,4 @@ Use this diagram to show where C-MAC, R-MAC, and ENC operate in message flow.
 Reinforce that the security model is role-based, layered, and cryptographically enforced.
 Transition to next chapter (Lifecycle Models) by noting that lifecycle states control when these mechanisms are active.
 -->
+
