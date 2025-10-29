@@ -72,7 +72,7 @@ Session keys are derived from the ISD’s master keys.
 <!-- Figure 4-1: Key Derivation Hierarchy -->
 ```mermaid
 graph LR
-  BaseKey[ISD Master Key (K-ENC, K-MAC, K-DEK)] -->|Derive| SessionKeys[SCP03 Session Keys (S-ENC, S-MAC, DEK)]
+  BaseKey[ISD Master Key \(K-ENC, K-MAC, K-DEK\)] -->|Derive| SessionKeys[SCP03 Session Keys \(S-ENC, S-MAC, DEK\)]
   SessionKeys -->|Used For| SecureMsg[Secure Messaging MAC + ENC]
 ```
 
