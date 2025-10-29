@@ -1,5 +1,18 @@
 # 3 Card Architecture
 
+## Table of Contents
+- [3.1 Security Domains](#31-security-domains)
+- [3.2 Global Services Applications](#32-global-services-applications)
+- [3.3 Runtime Environment](#33-runtime-environment)
+- [3.4 Trusted Framework](#34-trusted-framework)
+- [3.5 GlobalPlatform Environment (OPEN)](#35-globalplatform-environment-open)
+- [3.6 GlobalPlatform API](#36-globalplatform-api)
+- [3.7 Card Content](#37-card-content)
+- [3.8 Card Manager](#38-card-manager)
+
+
+# 3 Card Architecture
+
 ---
 
 ## 3.1 Security Domains
@@ -168,3 +181,4 @@ The Card Manager (also called the **Issuer Security Domain (ISD)** interface):
 <!-- presenter note:
 Conclude by reinforcing that the ISD (Card Manager) is the primary management interface for the card’s operational control.
 -->
+
