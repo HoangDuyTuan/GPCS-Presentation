@@ -1,5 +1,21 @@
 # 4 Security Architecture
 
+## Table of Contents
+- [4.1 Goals](#41-goals)
+- [4.2 Security Responsibilities and Requirements](#42-security-responsibilities-and-requirements)
+  - [4.2.1 Card Issuer’s Security Responsibilities](#421-card-issuers-security-responsibilities)
+  - [4.2.2 Application Provider’s Security Responsibilities](#422-application-providers-security-responsibilities)
+  - [4.2.3 Controlling Authority’s Security Responsibilities](#423-controlling-authoritys-security-responsibilities)
+  - [4.2.4 On-Card Components’ Security Requirements](#424-on-card-components-security-requirements)
+  - [4.2.5 Back-End System Security Requirements](#425-back-end-system-security-requirements)
+- [4.3 Cryptographic Support](#43-cryptographic-support)
+  - [4.3.1 Secure Card Content Management](#431-secure-card-content-management)
+  - [4.3.2 Secure Communication](#432-secure-communication)
+- [4.4 Summary](#44-summary)
+
+
+# 4 Security Architecture
+
 ---
 
 ## 4.1 Goals
@@ -133,4 +149,5 @@ Use this diagram to show where C-MAC, R-MAC, and ENC operate in message flow.
 Reinforce that the security model is role-based, layered, and cryptographically enforced.
 Transition to next chapter (Lifecycle Models) by noting that lifecycle states control when these mechanisms are active.
 -->
+
 
