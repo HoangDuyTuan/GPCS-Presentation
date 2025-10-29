@@ -1,5 +1,23 @@
 # 6 GlobalPlatform Environment (OPEN)
 
+## Table of Contents
+- [6.1 Overview](#61-overview)
+- [6.2 OPEN Services](#62-open-services)
+- [6.3 Command Dispatch](#63-command-dispatch)
+- [6.4 Logical Channels and Application Selection](#64-logical-channels-and-application-selection)
+  - [6.4.1 Implicit Selection Assignment](#641-implicit-selection-assignment)
+  - [6.4.2 Basic Logical Channel](#642-basic-logical-channel)
+  - [6.4.3 Supplementary Logical Channels](#643-supplementary-logical-channels)
+- [6.5 GlobalPlatform Registry](#65-globalplatform-registry)
+- [6.6 Privileges](#66-privileges)
+  - [6.6.1 Privilege Definition](#661-privilege-definition)
+  - [6.6.2 Privilege Assignment](#662-privilege-assignment)
+  - [6.6.3 Privilege Management](#663-privilege-management)
+- [6.7 GlobalPlatform Trusted Framework](#67-globalplatform-trusted-framework)
+
+
+# 6 GlobalPlatform Environment (OPEN)
+
 ---
 
 ## 6.1 Overview
@@ -255,3 +273,4 @@ sequenceDiagram
 Conclude by emphasizing that OPEN enforces both logical routing and trust management.
 Transition to appendix for APDU-level examples.
 -->
+
